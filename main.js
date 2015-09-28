@@ -31,9 +31,7 @@ angular.module('gameApp').controller('gameController', ['$scope', function($scop
 		}	
 
 
-		makeDeck()
-		console.log(gameDeck)
-		// var deck = makeDeck()
+
 
 
 		// shuffle deck - from Fisher-Yates shuffle
@@ -55,12 +53,36 @@ angular.module('gameApp').controller('gameController', ['$scope', function($scop
 			return gameDeck
 		}
 
-		shuffleDeck()
+
+
+		// start a new game 
+		var newGame = function(){
+			makeDeck()
+			shuffleDeck()
+			return gameDeck
+		}
+
+		newGame()
 		console.log(gameDeck)
 
-		
 
+
+		// deal cards
 		$scope.cards = gameDeck
+
+
+
+		// // hide colors
+		// $scope.flipped = false
+
+
+		// $scope.toggle = function($index){
+		// 	$scope.showColor = !$scope.showColor
+
+		// }
+
+
+
 
 
 }])

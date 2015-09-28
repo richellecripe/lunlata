@@ -1,3 +1,14 @@
+.game-container {
+	border-left: 1px solid #0a0a0a;
+	border-right: 1px solid #0a0a0a;
+}
+
 .cards {
 	height: 150px;
+	border: 1px solid #0a0a0a;
+}
+
+.white {
+	background-color: #fff;
+	border: 1px solid #0a0a0a;
 }
