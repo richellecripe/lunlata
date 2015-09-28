@@ -23,7 +23,7 @@
 		// make new gameDeck with 12 values from hexDeck array
 		for ( var i = 0; i < 12; i++ ){
 			// pull values randomly
-			var rand = Math.floor(Math.random() * hexDeck.length)
+			var rand = (hexDeck[Math.floor(Math.random() * hexDeck.length)])
 			// populate new array
 			gameDeck.push(rand)
 			gameDeck.push(rand)
@@ -35,6 +35,28 @@
 		console.log(gameDeck)
 		// var deck = makeDeck()
 
+
+		// shuffle deck - from Fisher-Yates shuffle
+		var shuffleDeck = function(){
+			var remainingCards = gameDeck.length, thisDeck, i
+
+			// while there are remaining cards to shuffle
+			while (remainingCards){
+
+				// pick a random card
+				i = Math.floor(Math.random() * remainingCards--)
+
+				// swap the random card with the current card
+				thisDeck = gameDeck[remainingCards]
+				gameDeck[remainingCards] = gameDeck[i]
+				gameDeck[i] = thisDeck
+			}
+
+			return gameDeck
+		}
+
+		shuffleDeck()
+		console.log(gameDeck)
 // })
 
 
