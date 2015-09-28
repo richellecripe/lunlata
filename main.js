@@ -1,7 +1,7 @@
-// angular.module('gameApp', [])
+angular.module('gameApp', [])
 
 
-// angular.module('gameApp').factory('gameFactory', function(){
+angular.module('gameApp').controller('gameController', ['$scope', function($scope){
 
 	// array with all possible hex values 
 	var hexDeck = ['#000000', '#000080', '#00008B', '#0000CD', '#0000FF', '#006400', '#008000', '#008080', '#008B8B', '#00BFFF', '#00CED1', '#00FA9A',
@@ -57,13 +57,12 @@
 
 		shuffleDeck()
 		console.log(gameDeck)
-// })
+
+		
+
+		$scope.cards = gameDeck
 
 
-// angular.module('gameApp').controller('gameController', ['$scope', 'gameFactory', function($scope, gameFactory){
+}])
 
 
-
-
-
-// }])
