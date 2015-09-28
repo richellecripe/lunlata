@@ -1,8 +1,9 @@
-angular.module('gameApp', [])
+// angular.module('gameApp', [])
 
 
-angular.module('gameApp').factory('cardFactory', function(){
+// angular.module('gameApp').factory('gameFactory', function(){
 
+	// array with all possible hex values 
 	var hexDeck = ['#000000', '#000080', '#00008B', '#0000CD', '#0000FF', '#006400', '#008000', '#008080', '#008B8B', '#00BFFF', '#00CED1', '#00FA9A',
 	'#00FF00', '#00FF7F', '#00FFFF', '#191970', '#1E90FF', '#20B2AA', '#228B22', '#2E8B57', '#2F4F4F', '#32CD32', '#3CB371', '#40E0D0', '#4169E1', 
 	'#4682B4', '#483D8B' ,'#48D1CC', '#4B0082', '#556B2F', '#5F9EA0', '#6495ED', '#663399', '#66CDAA', '#696969', '#6A5ACD', '#6B8E23', '#708090', 
@@ -14,9 +15,33 @@ angular.module('gameApp').factory('cardFactory', function(){
 	'#F8F8FF', '#FAEBD7', '#FAF0E6', '#FAFAD2', '#FDF5E6', '#FF0000', '#FF00FF', '#FF69B4', '#FF1493', '#FF4500', '#FA8072', '#FF6347', '#FF7F50',
 	'#FF8C00', '#FFA500', '#FFD700', '#FFFF00', '#FFA07A', '#FFB6C1', '#FFC0CB', '#FFDAB9', '#FFDEAD', '#FFEFD5']
 
-})
+		
+		// initialize empty array for new game deck
+		var gameDeck = []
+
+		var makeDeck = function(){
+		// make new gameDeck with 12 values from hexDeck array
+		for ( var i = 0; i < 12; i++ ){
+			// pull values randomly
+			var rand = Math.floor(Math.random() * hexDeck.length)
+			// populate new array
+			gameDeck.push(rand)
+			gameDeck.push(rand)
+			}
+		}	
 
 
-angular.module('gameApp').controller('gameController', ['$scope', 'cardFactory', function($scope, cardFactory){
+		makeDeck()
+		console.log(gameDeck)
+		// var deck = makeDeck()
 
-}])
+// })
+
+
+// angular.module('gameApp').controller('gameController', ['$scope', 'gameFactory', function($scope, gameFactory){
+
+
+
+
+
+// }])
