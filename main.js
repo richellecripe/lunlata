@@ -1,7 +1,7 @@
 angular.module('gameApp', [])
 
 
-angular.module('gameApp').controller('gameController', ['$scope', function($scope){
+angular.module('gameApp').controller('gameController', ['$scope', function ($scope){
 
 	// array with all possible hex values 
 	var hexDeck = ['#000000', '#000080', '#00008B', '#0000CD', '#0000FF', '#006400', '#008000', '#008080', '#008B8B', '#00BFFF', '#00CED1', '#00FA9A',
@@ -31,9 +31,6 @@ angular.module('gameApp').controller('gameController', ['$scope', function($scop
 		}	
 
 
-
-
-
 		// shuffle deck - from Fisher-Yates shuffle
 		var shuffleDeck = function(){
 			var remainingCards = gameDeck.length, thisDeck, i
@@ -54,16 +51,50 @@ angular.module('gameApp').controller('gameController', ['$scope', function($scop
 		}
 
 
-
 		// start a new game 
-		var newGame = function(){
+		var newGameDeck = function(){
 			makeDeck()
 			shuffleDeck()
 			return gameDeck
 		}
 
-		newGame()
-		console.log(gameDeck)
+		newGameDeck()
+		
+		// game constructor
+		var Game = function(gameDeck){
+			this.gameDeck = gameDeck
+			this.unmatchedPairs = gameDeck.length / 2
+			
+			// initialize empty array for the flipped cards
+			this.flippedCards = []
+
+			
+			this.flippedCardCheck = function(){
+
+				// when 2 cards are in the flipped cards array
+				if (this.flippedCards.length == 2){
+					
+				// 	// check for a match
+					if (this.flippedCards[0].color === this.flippedCards[1].color){
+						//
+						this.unmatchedPairs--
+						console.log("ok")
+
+					}
+
+					else {
+						console.log("this")
+					}
+				}
+			}
+	
+		}
+
+
+		var thisGame = new Game(gameDeck)
+
+
+
 
 
 
@@ -71,12 +102,19 @@ angular.module('gameApp').controller('gameController', ['$scope', function($scop
 		$scope.cards = gameDeck
 
 
-
+		// toggle flip 
 		$scope.toggle = function($index){
 			$scope.cards[$index].flipped = !$scope.cards[$index].flipped
+			if ($scope.cards[$index].flipped){
+				// referencing the flipped cards in this specific game
+				// pushes the flipped cards into this.flippedCards[]
+				thisGame.flippedCards.push(thisGame.gameDeck[$index])
+			}
+
+			thisGame.flippedCardCheck()
+
+			console.log(thisGame)
 		}
-
-
 
 
 
