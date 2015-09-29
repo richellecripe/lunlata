@@ -61,7 +61,7 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', fu
 			this.flippedCards = []
 
 			
-			this.flippedCardCheck = function(card){
+			this.flippedCardCheck = function(){
 
 				// when 2 cards are in the flipped cards array
 				if (this.flippedCards.length === 2){
@@ -76,6 +76,9 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', fu
 						this.unmatchedPairs--
 						this.flippedCards[0].disabled = true
 						this.flippedCards[1].disabled = true
+					}
+					else {
+						// set timeout 
 					}
 
 					this.flippedCards = []
