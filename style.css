@@ -2,16 +2,24 @@
 	font-family: 'Lato', sans-serif;
 }
 
+
+
 .header {
+	/*background-image: url();*/
 	line-height: 54px;
 	height: 58px;
 	text-align: right;
 	vertical-align: middle;
-	border-bottom: 1px solid #0a0a0a;
+	/*border-bottom: 1px solid #0a0a0a;*/
+	background-color: #eee9e9;
 }
 
 .btn {
 	border-radius: 2px;
+}
+
+.btn.active {
+	box-shadow: none;
 }
 
 .restart {
@@ -19,16 +27,19 @@
 	margin-left: 2%;
 }
 
+
 .cards {
-	height: 150px;
-	border: 1px solid #0a0a0a;
+	height: 140px;
+	/*border: 1px solid #0a0a0a;*/
 }
 
-
-
 .white {
-	height: 150px;
-	border: 1px solid #0a0a0a;
+	height: 140px;
+	/*border: 1px solid #0a0a0a;*/
+}
+
+.gray {
+	z-index: -5;
 }
 
 .white:hover {

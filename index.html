@@ -10,7 +10,8 @@
 	</head>
 
 	<body ng-controller="gameController">
-	
+		
+		
 		<div class="row header">
 			<div class="col-xs-12">
 				<div class="btn-group" data-toggle="buttons">
@@ -32,12 +33,12 @@
 		<!-- <div class="container game-container"> -->
 			<div class="row no-gutters">
 				<div class="col-xs-3" ng-repeat="card in cards track by $index">
-				<div class="cards" style="background-color: {{ card.color }}" ng-click="toggle($index)" ng-show="card.flipped"></div>
-				<div class="white" ng-click="toggle($index)" ng-show="!card.flipped"></div></div>
+				<div class="cards" style="background-color: {{ card.color }}" ng-click="toggle($index, card)" ng-show="card.flipped"></div>
+				<div class="white" ng-click="toggle($index, card)" ng-show="!card.flipped"></div></div>
 				
 			</div>
 		<!-- </div> -->
-
+	
 
 	<script type="text/javascript" src="main.js"></script>
 

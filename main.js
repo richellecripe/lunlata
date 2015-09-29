@@ -1,7 +1,7 @@
 angular.module('gameApp', [])
 
 
-angular.module('gameApp').controller('gameController', ['$scope', function ($scope){
+angular.module('gameApp').controller('gameController', ['$scope', '$timeout', function ($scope, $timeout){
 
 	// array with all possible hex values 
 	var hexDeck = ['#000000', '#000080', '#00008B', '#0000CD', '#0000FF', '#006400', '#008000', '#008080', '#008B8B', '#00BFFF', '#00CED1', '#00FA9A',
@@ -20,13 +20,14 @@ angular.module('gameApp').controller('gameController', ['$scope', function ($sco
 		var gameDeck = []
 
 		var makeDeck = function(){
+			gameDeck = []
 		// make new gameDeck with 12 values from hexDeck array
 		for ( var i = 0; i < 12; i++ ){
 			// pull values randomly
 			var rand = (hexDeck[Math.floor(Math.random() * hexDeck.length)])
 			// populate new array
-			gameDeck.push({color: rand, flipped: false})
-			gameDeck.push({color: rand, flipped: false})
+			gameDeck.push({color: rand, flipped: false, disabled: false})
+			gameDeck.push({color: rand, flipped: false, disabled: false})
 			}
 		}	
 
@@ -51,15 +52,6 @@ angular.module('gameApp').controller('gameController', ['$scope', function ($sco
 		}
 
 
-		// start a new game 
-		var newGameDeck = function(){
-			makeDeck()
-			shuffleDeck()
-			return gameDeck
-		}
-
-		newGameDeck()
-		
 		// game constructor
 		var Game = function(gameDeck){
 			this.gameDeck = gameDeck
@@ -69,40 +61,38 @@ angular.module('gameApp').controller('gameController', ['$scope', function ($sco
 			this.flippedCards = []
 
 			
-			this.flippedCardCheck = function(){
+			this.flippedCardCheck = function(card){
 
 				// when 2 cards are in the flipped cards array
 				if (this.flippedCards.length === 2){
+
+					if (this.flippedCards[0].disabled && this.flippedCards[1].disabled){
+						
+					} 
 					
 				// 	// check for a match
 					if (this.flippedCards[0].color === this.flippedCards[1].color){
 						//
 						this.unmatchedPairs--
-						// this.message = (this.unmatchedPairs == 0) ? Game.winner
-						console.log("ok")
-
+						this.flippedCards[0].disabled = true
+						this.flippedCards[1].disabled = true
 					}
 
-					else {
-						console.log("this")
-					}
-				}
-
-				else if (this.flippedCards.length === 3){
-					this.flippedCards.splice(1, this.flippedCards.length)
+					this.flippedCards = []
+		
 				}
 			}
-		
-
-				
 
 		} // end Game
 
+		// start a new game 
+		var newGameDeck = function(){
+			makeDeck()
+			shuffleDeck()
+			return new Game(gameDeck)
+		}
 
-		var thisGame = new Game(gameDeck)
-
-
-
+		var thisGame = newGameDeck()
 
 
 
@@ -111,8 +101,11 @@ angular.module('gameApp').controller('gameController', ['$scope', function ($sco
 
 
 		// toggle flip 
-		$scope.toggle = function($index){
+		$scope.toggle = function($index, card){
+			if (!$scope.cards[$index].disabled){
+
 			$scope.cards[$index].flipped = !$scope.cards[$index].flipped
+			
 			if ($scope.cards[$index].flipped){
 				// referencing the flipped cards in this specific game
 				// pushes the flipped cards into this.flippedCards[]
@@ -121,13 +114,16 @@ angular.module('gameApp').controller('gameController', ['$scope', function ($sco
 
 			thisGame.flippedCardCheck()
 
+			}
+
 			console.log(thisGame)
 		}
 
 
 
 		$scope.restart = function(){
-			
+			thisGame = newGameDeck()
+			$scope.cards = gameDeck
 		}
 
 
