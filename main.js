@@ -72,12 +72,13 @@ angular.module('gameApp').controller('gameController', ['$scope', function ($sco
 			this.flippedCardCheck = function(){
 
 				// when 2 cards are in the flipped cards array
-				if (this.flippedCards.length == 2){
+				if (this.flippedCards.length === 2){
 					
 				// 	// check for a match
 					if (this.flippedCards[0].color === this.flippedCards[1].color){
 						//
 						this.unmatchedPairs--
+						// this.message = (this.unmatchedPairs == 0) ? Game.winner
 						console.log("ok")
 
 					}
@@ -86,9 +87,16 @@ angular.module('gameApp').controller('gameController', ['$scope', function ($sco
 						console.log("this")
 					}
 				}
+
+				else if (this.flippedCards.length === 3){
+					this.flippedCards.splice(1, this.flippedCards.length)
+				}
 			}
-	
-		}
+		
+
+				
+
+		} // end Game
 
 
 		var thisGame = new Game(gameDeck)
@@ -117,6 +125,10 @@ angular.module('gameApp').controller('gameController', ['$scope', function ($sco
 		}
 
 
+
+		$scope.restart = function(){
+			
+		}
 
 
 

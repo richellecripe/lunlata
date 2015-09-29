@@ -1,6 +1,22 @@
-.game-container {
-	border-left: 1px solid #0a0a0a;
-	border-right: 1px solid #0a0a0a;
+* {
+	font-family: 'Lato', sans-serif;
+}
+
+.header {
+	line-height: 54px;
+	height: 58px;
+	text-align: right;
+	vertical-align: middle;
+	border-bottom: 1px solid #0a0a0a;
+}
+
+.btn {
+	border-radius: 2px;
+}
+
+.restart {
+	margin-right: 2%;
+	margin-left: 2%;
 }
 
 .cards {
@@ -8,9 +24,15 @@
 	border: 1px solid #0a0a0a;
 }
 
+
+
 .white {
 	height: 150px;
 	border: 1px solid #0a0a0a;
+}
+
+.white:hover {
+	background-color: #a6a3a3;
 }
 
 .row.no-gutters {
