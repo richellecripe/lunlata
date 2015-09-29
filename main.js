@@ -25,8 +25,8 @@ angular.module('gameApp').controller('gameController', ['$scope', function($scop
 			// pull values randomly
 			var rand = (hexDeck[Math.floor(Math.random() * hexDeck.length)])
 			// populate new array
-			gameDeck.push(rand)
-			gameDeck.push(rand)
+			gameDeck.push({color: rand, flipped: false})
+			gameDeck.push({color: rand, flipped: false})
 			}
 		}	
 
@@ -72,14 +72,11 @@ angular.module('gameApp').controller('gameController', ['$scope', function($scop
 
 
 
-		// // hide colors
-		// $scope.flipped = false
+		$scope.toggle = function($index){
+			$scope.cards[$index].flipped = !$scope.cards[$index].flipped
+		}
 
 
-		// $scope.toggle = function($index){
-		// 	$scope.showColor = !$scope.showColor
-
-		// }
 
 
 

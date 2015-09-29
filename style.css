@@ -9,6 +9,17 @@
 }
 
 .white {
-	background-color: #fff;
+	height: 150px;
 	border: 1px solid #0a0a0a;
+}
+
+.row.no-gutters {
+	margin-right: 0;
+	margin-left: 0;
+}
+
+.row.no-gutters > [class^="col-"],
+.row.no-gutters > [class*=" col-"] {
+	padding-right: 0;
+	padding-left: 0;
 }
