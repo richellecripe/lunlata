@@ -78,6 +78,10 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', fu
 						//
 						this.unmatchedPairs--
 						this.points++
+
+							if (this.unmatchedPairs === 11){
+								$('#myModal').modal('show')
+							}
 						// disabled matched pair
 						this.flippedCards[0].disabled = true
 						this.flippedCards[1].disabled = true
@@ -125,6 +129,8 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', fu
 		// deal cards
 		$scope.cards = gameDeck
 
+		
+
 
 		// toggle flip 
 		$scope.toggle = function($index, card){
@@ -151,6 +157,8 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', fu
 			thisGame = newGameDeck()
 			$scope.cards = gameDeck
 		}
+
+
 
 
 
