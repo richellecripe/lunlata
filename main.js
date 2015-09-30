@@ -56,6 +56,8 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', fu
 		var Game = function(gameDeck){
 			this.gameDeck = gameDeck
 			this.unmatchedPairs = gameDeck.length / 2
+
+			this.points = 0
 			
 			// initialize empty array for the flipped cards
 			this.flippedCards = []
@@ -66,27 +68,46 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', fu
 				// when 2 cards are in the flipped cards array
 				if (this.flippedCards.length === 2){
 
+
 					if (this.flippedCards[0].disabled && this.flippedCards[1].disabled){
 						
 					} 
 					
-				// 	// check for a match
+				 	// check for a match
 					if (this.flippedCards[0].color === this.flippedCards[1].color){
 						//
 						this.unmatchedPairs--
+						this.points++
+						// disabled matched pair
 						this.flippedCards[0].disabled = true
 						this.flippedCards[1].disabled = true
-					}
-					else {
-						// set timeout 
+						// clear flippedCards array
+						this.flippedCards = []
 					}
 
-					this.flippedCards = []
-		
+					// if cards are not a match
+					else {
+						// declare variable to bind this. inside the timeout function
+						var self = this
+
+						var timeout = function(){
+							// after a second card has been flipped 
+							if (!self.flippedCards[0].flipped || self.flippedCards[1].flipped){
+									// flip cards 1 and 2 back over
+									self.flippedCards[0].flipped = false
+									self.flippedCards[1].flipped = false
+									// clear flippedCards array
+									self.flippedCards = []
+							}
+						}
+						// call timeout function after 0.5 seconds
+						$timeout(timeout, 500)
+					}
 				}
 			}
 
 		} // end Game
+
 
 		// start a new game 
 		var newGameDeck = function(){
@@ -99,6 +120,8 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', fu
 
 
 
+
+
 		// deal cards
 		$scope.cards = gameDeck
 
@@ -107,23 +130,23 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', fu
 		$scope.toggle = function($index, card){
 			if (!$scope.cards[$index].disabled){
 
-			$scope.cards[$index].flipped = !$scope.cards[$index].flipped
+				$scope.cards[$index].flipped = !$scope.cards[$index].flipped
+				
+					if ($scope.cards[$index].flipped){
+						// referencing the flipped cards in this specific game
+						// pushes the flipped cards into this.flippedCards[]
+						thisGame.flippedCards.push(thisGame.gameDeck[$index])
+					}
+
+				thisGame.flippedCardCheck()
 			
-			if ($scope.cards[$index].flipped){
-				// referencing the flipped cards in this specific game
-				// pushes the flipped cards into this.flippedCards[]
-				thisGame.flippedCards.push(thisGame.gameDeck[$index])
 			}
-
-			thisGame.flippedCardCheck()
-
-			}
-
+					
 			console.log(thisGame)
 		}
 
 
-
+		// restart the game/ start a new game
 		$scope.restart = function(){
 			thisGame = newGameDeck()
 			$scope.cards = gameDeck
