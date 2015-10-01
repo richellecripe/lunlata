@@ -29,24 +29,29 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', fu
 	// teal,   dodgerBlue,  hotPink,  violet, mediumSlateBlue, crimson, paleTurquoise, darkSlateGray
 	'#008080', '#1E90FF',  '#FF69B4', '#EE82EE', '#7B68EE', '#DC143C', '#AFEEEE', '#2F4F4F'],
 	
-	
+	medium : ['#00FFFF', '#7FFFD4', '#000000', '#0000FF', '#8A2BE2', '#A52A2A', '#DEB887', '#5F9EA0',
+	'#7FFF00', '#D2691E', '#6495ED', '#FF7F50', '#DC143C', '#00FFFF', '#008B8B', '#B8860B', '#006400', 
+	'#BDB76B', '#556B2F', '#FF8C00', '#8B008B', '#9932CC', '#8B0000', '#E9967A', '#483D8B', '#8FBC8F', 
+	'#2F4F4F', '#FF1493', '#00BFFF', '#228B22', '#DAA520', '#1E90FF', '#FF00FF', '#B22222', '#ADFF2F', 
+	'#CD5C5C', '#4B0082', '#ADD8E6', '#F08080', '#E0FFFF', '#90EE90', '#FFB6C1', '#FFA07A', '#20B2AA', 
+	'#87CEFA', '#32CD32', '#66CDAA', '#BA55D3', '#7B68EE', '#00FA9A', '#C71585', '#808000', '#FFA500', 
+	'#FF4500', '#DA70D6', '#98FB98', '#DB7093', '#800080', '#BC8F8F'],
 
 
-	hard : ['#000000', '#000080', '#00008B', '#0000CD', '#0000FF', '#006400', '#008000', '#008080', '#008B8B', '#00BFFF', '#00CED1', '#00FA9A',
-	'#00FF00', '#00FF7F', '#00FFFF', '#191970', '#1E90FF', '#20B2AA', '#228B22', '#2E8B57', '#2F4F4F', '#32CD32', '#3CB371', '#40E0D0', '#4169E1', 
-	'#4682B4', '#483D8B' ,'#48D1CC', '#4B0082', '#556B2F', '#5F9EA0', '#6495ED', '#663399', '#66CDAA', '#696969', '#6A5ACD', '#6B8E23', '#708090', 
-	'#778899', '#7B68EE', '#7CFC00', '#7FFF00', '#7FFFD4', '#800000', '#800080', '#808000', '#808080', '#87CEEB', '#87CEFA', '#8A2BE2', '#8B0000', 
-	'#8B008B' ,'#8B4513', '#8FBC8F', '#90EE90', '#9370DB', '#9400D3', '#98FB98', '#9932CC', '#9ACD32', '#A0522D', '#A52A2A', '#A9A9A9', '#ADD8E6', 
-	'#ADFF2F', '#AFEEEE', '#B0C4DE', '#B0E0E6', '#B22222', '#B8860B', '#BA55D3', '#BC8F8F', '#BDB76B', '#C0C0C0', '#C71585', '#CD5C5C', '#CD853F',
-	'#D2691E', '#D2B48C', '#D3D3D3', '#D8BFD8', '#DA70D6', '#DAA520', '#DB7093', '#DC143C', '#DCDCDC', '#DDA0DD', '#DEB887', '#E0FFFF', '#E6E6FA', 
-	'#E9967A', '#EE82EE', '#EEE8AA', '#F08080', '#F0E68C', '#F0F8FF', '#F0FFF0', '#F0FFFF', '#F4A460', '#F5DEB3', '#F5F5DC', '#F5F5F5', '#F5FFFA',
-	'#F8F8FF', '#FAEBD7', '#FAF0E6', '#FAFAD2', '#FDF5E6', '#FF0000', '#FF00FF', '#FF69B4', '#FF1493', '#FF4500', '#FA8072', '#FF6347', '#FF7F50',
-	'#FF8C00', '#FFA500', '#FFD700', '#FFFF00', '#FFA07A', '#FFB6C1', '#FFC0CB', '#FFDAB9', '#FFDEAD', '#FFEFD5']
+	hard : ['#00008B', '#0000FF', '#008000', '#008B8B', '#00BFFF', '#00CED1', '#00FA9A', '#00FFFF', 
+	'#1E90FF', '#228B22', '#3CB371', '#40E0D0', '#4169E1', '#4682B4', '#4B0082', '#556B2F', '#5F9EA0',
+	'#6A5ACD', '#6B8E23', '#7FFF00', '#7FFFD4', '#808000', '#87CEFA', '#8A2BE2', '#800080', '#8B0000',
+	'#8B4513', '#9370DB', '#A52A2A', '#B8860B', '#9ACD32', '#BA55D3', '#BC8F8F', '#BDB76B', '#C71585',
+	'#CD5C5C', '#CD853F', '#D2691E', '#D8BFD8', '#DA70D6', '#DB7093', '#DC143C', '#DEB887', '#EEE8AA',
+	'#F08080', '#F4A460', '#FF0000', '#FF1493', '#FF4500', '#FF69B4', '#FF7F50', '#FF8C00', '#FFB6C1',
+	'#FFD700', '#FFFF00']
 	
 	
 	}
 		// initialize empty array for new game deck
 		var gameDeck = []
+		var points = 0
+		var misses = 0
 
 		var makeDeck = function(){
 			gameDeck = []
@@ -85,18 +90,21 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', fu
 		}
 
 
+
+
 		// game constructor
 		var Game = function(gameDeck){
 			this.gameDeck = gameDeck
 			this.unmatchedPairs = gameDeck.length / 2
-
-			this.points = 0
+			this.points = points
+			this.misses = misses
 			
 			// initialize empty array for the flipped cards
 			this.flippedCards = []
 
 			
 			this.flippedCardCheck = function(){
+
 
 				// when 2 cards are in the flipped cards array
 				if (this.flippedCards.length === 2){
@@ -110,11 +118,19 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', fu
 					if (this.flippedCards[0].color === this.flippedCards[1].color){
 						//
 						this.unmatchedPairs--
-						this.points++
 
-							if (this.unmatchedPairs === 11){
-								$('#myModal').modal('show')
+						if ($scope.level === 'easy') {
+							this.points+=3
+						}
+						
+							else if ($scope.level === 'medium') {
+								this.points+=4
 							}
+
+							else if ($scope.level === 'hard') {
+								this.points+=5
+							}
+
 						// disabled matched pair
 						this.flippedCards[0].disabled = true
 						this.flippedCards[1].disabled = true
@@ -124,6 +140,7 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', fu
 
 					// if cards are not a match
 					else {
+						this.misses++
 						// declare variable to bind this. inside the timeout function
 						var self = this
 
@@ -135,15 +152,25 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', fu
 									self.flippedCards[1].flipped = false
 									// clear flippedCards array
 									self.flippedCards = []
+
 							}
 						}
-						// call timeout function after 0.7 seconds
-						$timeout(timeout, 700)
-					}
+						// call timeout function after 0.5 seconds
+						$timeout(timeout, 500)
+
+
+					}	
+
+					if (this.unmatchedPairs === 0){
+								$('#myModal').modal('show')
+								$scope.points = this.points - this.misses
+							}
+					
 				}
+
 			}
 
-			 
+			
 
 		
 
@@ -166,6 +193,8 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', fu
 
 		// deal cards
 		$scope.cards = gameDeck
+		$scope.points = points
+
 
 		$scope.setLevel = function(level) {
 			$scope.level = level
