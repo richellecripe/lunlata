@@ -37,18 +37,49 @@
 	border-color: black;
 }
 
-.restart {
-	background-color: #c61531;
-	border-color: #c61531;
-	margin-right: 2%;
-	margin-left: 2%;
+.okay {
+	background-color: #fff;
+	color: #c61531;
+	border: none;
+	height: auto;
+	font-size: 2.5em;
 }
 
-.restart:hover {
-	background-color: #c61531;
-	border-color: #c61531;
-	color: #fff;
+.okay:hover {
+	background-color: #fff;
+	color: #c61531;
 }
+
+.okay.active {
+	border-style: none;
+	box-shadow: none;
+}
+
+.play {
+	background-color: #eee9e9;
+	color: #c61531;
+	border: none;
+	height: auto;
+	font-size: 2em;
+}
+
+.play:hover {
+	background-color: #eee9e9;
+	color: #c61531;
+}
+
+.play:visited {
+	background-color: #eee9e9;
+	color: #c61531;
+}
+
+.play.active {
+	color: #c61531;
+	border-style: none;
+	box-shadow: none;
+}
+
+
 
 
 
@@ -90,6 +121,11 @@
 }
 
 
+.modal-dialog {
+	width: 40%;
+	margin: auto;
+	margin-top: 10%;
+}
 
 .modal-content {
 	border-radius: 2px;
@@ -101,29 +137,21 @@
 
 .modal-body {
 	font-size: 2.5rem;
+	padding-top: 18%;
+	text-align: center;
 }
 
 .modal-footer {
 	border: none;
 }
 
-.modal-body {
-	padding-top: 18%;
-	text-align: center;
+.close:hover {
+	background-color: #fff;
 }
 
-.modal button {
-	border-radius: 2px;
-	background-color: #15c6aa;
-	color: #fff;
-}
-
-.modal button:hover {
-	color: #fff;
-	background-color: #15c6aa;
-	border-color: #15c6aa;
-}
 
 .btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus {
     outline: 0;
+    box-shadow: none;
+    border: none;
 }

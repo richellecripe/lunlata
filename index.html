@@ -14,17 +14,17 @@
 		<div class="row header">
 			<div class="col-xs-12">
 				<div class="btn-group" data-toggle="buttons">
-				  <label class="btn btn-info level active">
-				    <input type="radio" name="options" id="easy" autocomplete="off" checked> Easy
+				  <label class="btn level active" ng-click="setLevel('easy')">
+				    <input type="radio" name="options" id="easy" autocomplete="off" checked ng-model="level" ng-value="easy" > 1
 				  </label>
-				  <label class="btn btn-info level">
-				    <input type="radio" name="options" id="medium" autocomplete="off"> Medium
+				  <label class="btn  level" ng-click="setLevel('medium')">
+				    <input type="radio" name="options" id="medium" autocomplete="off" ng-model="level" ng-value="medium" > 2
 				  </label>
-				  <label class="btn btn-info level">
-				    <input type="radio" name="options" id="hard" autocomplete="off"> Hard
+				  <label class="btn  level" ng-click="setLevel('hard')">
+				    <input type="radio" name="options" id="hard" autocomplete="off" ng-model="level" ng-value="hard" > 3
 				  </label>
 				</div>
-				<button type="button" class="btn btn-danger restart" ng-click="restart()">Restart</button>
+				<button type="button" class="btn play" ng-click="restart()"><span class="glyphicon glyphicon-play"></span></button>
 			</div>
 		</div>
 
@@ -45,11 +45,11 @@
 		        
 		      </div>
 		      <div class="modal-body">
-		        <p>You won!</p>
+		        <p>You did it!</p>
 		      </div>
 		    
 		    	<div class="modal-footer">
-		    		 <button type="button" class="btn" data-dismiss="modal">yay</button>
+		    		 <button type="button" class="btn okay" data-dismiss="modal"><span class="glyphicon glyphicon-ok"</span></button>
 		    	</div>
 		    </div><!-- /.modal-content -->
 		  </div><!-- /.modal-dialog -->

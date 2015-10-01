@@ -3,8 +3,36 @@ angular.module('gameApp', [])
 
 angular.module('gameApp').controller('gameController', ['$scope', '$timeout', function ($scope, $timeout){
 
-	// array with all possible hex values 
-	var hexDeck = ['#000000', '#000080', '#00008B', '#0000CD', '#0000FF', '#006400', '#008000', '#008080', '#008B8B', '#00BFFF', '#00CED1', '#00FA9A',
+		
+			$('#easy').on('click', function () {
+			    $(this).button('toggle') 
+			  	}) 
+
+			$('#medium').on('click', function(){
+			 	$(this).button('toggle')
+			 }) 
+
+
+			 $('#hard').on('click', function(){
+			 	$(this).button('toggle')
+			 })
+	
+	$scope.level = 'easy'
+	
+
+	var decks = { 
+
+
+
+		//deep pink, blue violet, indigo,    red,    dark orange, yellow, saddleBrown,  mediumSeaGreen, darkGreen, aqua
+	easy : ['#FF1493', '#8A2BE2', '#4B0082', '#FF0000', '#FF8C00', '#FFFF00', '#8B4513',  '#3CB371', '#006400', '#00FFFF',
+	// teal,   dodgerBlue,  hotPink,  violet, mediumSlateBlue, crimson, paleTurquoise, darkSlateGray
+	'#008080', '#1E90FF',  '#FF69B4', '#EE82EE', '#7B68EE', '#DC143C', '#AFEEEE', '#2F4F4F'],
+	
+	
+
+
+	hard : ['#000000', '#000080', '#00008B', '#0000CD', '#0000FF', '#006400', '#008000', '#008080', '#008B8B', '#00BFFF', '#00CED1', '#00FA9A',
 	'#00FF00', '#00FF7F', '#00FFFF', '#191970', '#1E90FF', '#20B2AA', '#228B22', '#2E8B57', '#2F4F4F', '#32CD32', '#3CB371', '#40E0D0', '#4169E1', 
 	'#4682B4', '#483D8B' ,'#48D1CC', '#4B0082', '#556B2F', '#5F9EA0', '#6495ED', '#663399', '#66CDAA', '#696969', '#6A5ACD', '#6B8E23', '#708090', 
 	'#778899', '#7B68EE', '#7CFC00', '#7FFF00', '#7FFFD4', '#800000', '#800080', '#808000', '#808080', '#87CEEB', '#87CEFA', '#8A2BE2', '#8B0000', 
@@ -14,20 +42,25 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', fu
 	'#E9967A', '#EE82EE', '#EEE8AA', '#F08080', '#F0E68C', '#F0F8FF', '#F0FFF0', '#F0FFFF', '#F4A460', '#F5DEB3', '#F5F5DC', '#F5F5F5', '#F5FFFA',
 	'#F8F8FF', '#FAEBD7', '#FAF0E6', '#FAFAD2', '#FDF5E6', '#FF0000', '#FF00FF', '#FF69B4', '#FF1493', '#FF4500', '#FA8072', '#FF6347', '#FF7F50',
 	'#FF8C00', '#FFA500', '#FFD700', '#FFFF00', '#FFA07A', '#FFB6C1', '#FFC0CB', '#FFDAB9', '#FFDEAD', '#FFEFD5']
-
-		
+	
+	
+	}
 		// initialize empty array for new game deck
 		var gameDeck = []
 
 		var makeDeck = function(){
 			gameDeck = []
+			console.log($scope.level)
+
+
+		var rand = (Math.floor(Math.random() * (decks[$scope.level].length - 12)))
+		console.log(rand, decks[$scope.level].length)
 		// make new gameDeck with 12 values from hexDeck array
-		for ( var i = 0; i < 12; i++ ){
-			// pull values randomly
-			var rand = (hexDeck[Math.floor(Math.random() * hexDeck.length)])
+		for ( var i = rand; i < rand + 12; i++ ){
+
 			// populate new array
-			gameDeck.push({color: rand, flipped: false, disabled: false})
-			gameDeck.push({color: rand, flipped: false, disabled: false})
+			gameDeck.push({color: decks[$scope.level][i], flipped: false, disabled: false})
+			gameDeck.push({color: decks[$scope.level][i], flipped: false, disabled: false})
 			}
 		}	
 
@@ -104,11 +137,15 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', fu
 									self.flippedCards = []
 							}
 						}
-						// call timeout function after 0.5 seconds
-						$timeout(timeout, 500)
+						// call timeout function after 0.7 seconds
+						$timeout(timeout, 700)
 					}
 				}
 			}
+
+			 
+
+		
 
 		} // end Game
 
@@ -126,10 +163,15 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', fu
 
 
 
+
 		// deal cards
 		$scope.cards = gameDeck
 
-		
+		$scope.setLevel = function(level) {
+			$scope.level = level
+			console.log(level)
+			console.log($scope.level)
+		}
 
 
 		// toggle flip 
@@ -152,9 +194,14 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', fu
 		}
 
 
+
+
+
+
 		// restart the game/ start a new game
 		$scope.restart = function(){
 			thisGame = newGameDeck()
+				console.log(thisGame)
 			$scope.cards = gameDeck
 		}
 
