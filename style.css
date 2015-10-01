@@ -2,7 +2,6 @@
 	font-family: 'Lato', sans-serif;
 }
 
-
 .header {
 	/*background-image: url();*/
 	line-height: 54px;
@@ -155,3 +154,24 @@
     box-shadow: none;
     border: none;
 }
+
+[ng:cloak], 
+[ng-cloak], 
+[data-ng-cloak], 
+[x-ng-cloak], 
+.ng-cloak, 
+.x-ng-cloak {
+  display: none !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+

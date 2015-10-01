@@ -120,15 +120,15 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', fu
 						this.unmatchedPairs--
 
 						if ($scope.level === 'easy') {
-							this.points+=3
+							this.points+=2
 						}
 						
 							else if ($scope.level === 'medium') {
-								this.points+=4
+								this.points+=2.5
 							}
 
 							else if ($scope.level === 'hard') {
-								this.points+=5
+								this.points+=3
 							}
 
 						// disabled matched pair
