@@ -22,7 +22,7 @@ app.get( '/', function(req, res){
 })
 
 // --- Create Port & Listen for Connections --- \\
-var port = 3000
+var port = 80
 
 
 app.listen(port, function(){
