@@ -12,8 +12,8 @@
 	</head>
 
 	<body ng-controller="gameController">
-
-		<div class="row header">
+	<div class="main">
+		<div class="header">
 			<div class="col-xs-12">
 				<div class="btn-group" data-toggle="buttons">
 				  <label class="btn level active" ng-click="setLevel('easy')">
@@ -38,7 +38,8 @@
 				<div class="white" ng-click="toggle($index, card)" ng-show="!card.flipped"></div></div>
 				
 			</div>
-		<!-- </div> -->
+	</div>
+	<!-- 	</div> -->
 		<div class="modal fade win" id="myModal">
 		  <div class="modal-dialog modal-sm">
 		    <div class="modal-content">
@@ -47,7 +48,7 @@
 		        
 		      </div>
 		      <div class="modal-body" ng-model="points">
-		        <p> {{ points }} points</p>
+		        <p>You did it! {{ points }} points</p>
 		      </div>
 		    
 		    	<div class="modal-footer">
@@ -56,6 +57,7 @@
 		    </div><!-- /.modal-content -->
 		  </div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->
+
 
 		<script type="text/javascript" src="/js/main.js"></script>
 	
