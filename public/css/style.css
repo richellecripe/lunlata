@@ -8,8 +8,9 @@
 	height: 72px;
 	text-align: right;
 	vertical-align: middle;
+
+	/*background-color: #eee9e9;*/
 	/*border-bottom: 1px solid #0a0a0a;*/
-	background-color: #eee9e9;
 	/*margin-left: 0.25%;
 	margin-right: 0.25%;*/
 }
@@ -24,20 +25,20 @@
 
 .btn.active {
 	box-shadow: none;
-	background-color: paleturquoise;
+	background-color: #d8cccc;
 	color: black;
 	border-color: black;
 
 }
 
 .btn.active:hover {
-	background-color: paleturquoise;
+	background-color: #eee9e9;
 	color: black;
 	border-color: black;
 }
 
 .btn:hover {
-	background-color: paleturquoise;
+	background-color: #eee9e9;
 	color: black;
 	border-color: black;
 }
@@ -61,7 +62,7 @@
 }
 
 .play {
-	background-color: #eee9e9;
+	background-color: #fff;
 	color: #c61531;
 	border: none;
 	height: auto;
@@ -69,12 +70,12 @@
 }
 
 .play:hover {
-	background-color: #eee9e9;
+	background-color: #fff;
 	color: #c61531;
 }
 
 .play:visited {
-	background-color: #eee9e9;
+	background-color: #fff;
 	color: #c61531;
 }
 
@@ -109,7 +110,8 @@
 
 .white:hover {
 	/*background-color: #a6a3a3;*/
-	background-color: #eee9e9;
+	/*background-color: #eee9e9;*/
+	border: 2px solid turquoise;
 }
 
 .row.no-gutters {
@@ -170,15 +172,13 @@
 
 
 .main {
-	max-width: 50%;
+	max-width: 70%;
 	margin: auto;
-	border-left: 4px solid #eee9e9;
+
+	/*border-left: 4px solid #eee9e9;
 	border-right: 4px solid #eee9e9;
-	border-bottom: 4px solid #eee9e9;
+	border-bottom: 4px solid #eee9e9;*/
 }
-
-
-
 
 
 
