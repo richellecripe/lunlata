@@ -7,7 +7,7 @@ var bodyParser = require('body-parser')
 var session = require('express-session')
 var mongoose = require('mongoose')
 var passport = require('passport')
-var passportConfig = require('./passport.js')
+var passportConfig = require('./ passport.js')
 // var routes = require('./routes/routes.js')
 
 
@@ -46,6 +46,8 @@ app.get( '/', function(req, res){
 app.get( '/test', passportConfig.ensureAuthAjax, function(req, res){
 	res.send({ success: 'success!'})
 })
+
+
 
 // --- Create Port & Listen for Connections --- \\
 var port = 3000

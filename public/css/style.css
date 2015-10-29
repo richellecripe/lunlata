@@ -180,7 +180,10 @@
 	border-bottom: 4px solid #eee9e9;*/
 }
 
-
+.leaderboard-table {
+	max-width: 80%;
+	margin: auto;
+}
 
 
 
