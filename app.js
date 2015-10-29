@@ -4,10 +4,10 @@
 // --- Require --- \\
 var express = require('express')
 var bodyParser = require('body-parser')
-// var session = require('express-session')
+var session = require('express-session')
 var mongoose = require('mongoose')
 var passport = require('passport')
-var passportConfig = require('passport.js')
+var passportConfig = require('./passport.js')
 // var routes = require('./routes/routes.js')
 
 

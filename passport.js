@@ -1,7 +1,19 @@
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-var User = require('../authModel/user.js');
+var User = require('./auth/authModel/user.js');
+var mongoose = require('mongoose')
+
+
+passport.serializeUser(function(user, done){
+  done(null, user.id)
+})
+
+passport.deserializeUser(function(id, done){
+  User.findById(id, function(err, user){
+    done(err, user)
+  })
+})
 
 
 // create local strategy 
