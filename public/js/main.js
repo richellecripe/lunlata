@@ -1,7 +1,7 @@
 angular.module('gameApp', [])
 
 
-angular.module('gameApp').controller('gameController', ['$scope', '$timeout', function ($scope, $timeout){
+angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$http', function ($scope, $timeout, $http){
 
 		
 			$('#easy').on('click', function () {
@@ -235,6 +235,15 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', fu
 		}
 
 
+		$scope.test = function(){
+
+			$http({
+				method	: 'get',
+				url		: '/test',
+			}).then(function(returnData){
+				console.log(returnData.data)
+			})
+		}
 
 
 
