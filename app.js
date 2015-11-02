@@ -7,7 +7,9 @@ var bodyParser = require('body-parser')
 var session = require('express-session')
 var mongoose = require('mongoose')
 var passport = require('passport')
-var passportConfig = require('./ passport.js')
+var passportConfig = require('./passport.js')
+var User = require('./auth/authModel/user.js')
+var userCtrl = require('./controllers/userCtrl.js')
 // var routes = require('./routes/routes.js')
 
 
@@ -47,7 +49,15 @@ app.get( '/test', passportConfig.ensureAuthAjax, function(req, res){
 	res.send({ success: 'success!'})
 })
 
+app.post( '/login', function(req, res){
+	console.log(req.body)
+})
 
+app.post( '/register', function(req,res){
+	console.log(req.body)
+})
+
+app.get( '/leaderboard', userCtrl.findLeaders)
 
 // --- Create Port & Listen for Connections --- \\
 var port = 3000

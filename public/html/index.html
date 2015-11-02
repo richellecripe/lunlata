@@ -11,7 +11,7 @@
 		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	</head>
 
-	<body>
+	<body ng-controller="gameController">
 
 	<nav class="navbar navbar-default">
   		<div class="container-fluid">
@@ -31,6 +31,9 @@
       
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#" class="loginbutton">Login</a></li>
+        <li><a href="#" ng-click="showLeaders()" class="leaderboard">Leaderboard</a></li>
+
+        <!-- dropdown menu 
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Stuff<span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -40,7 +43,7 @@
             <li role="separator" class="divider"></li>
             <li><a href="#">Separated link</a></li>
           </ul>
-        </li>
+        </li> -->
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -49,7 +52,7 @@
 
 
 
-	<div ng-controller="gameController">
+	<div>
 	<div class="main">
 		<div class="header">
 			<div class="col-xs-12">
@@ -100,7 +103,7 @@
 		</div><!-- /.modal -->
 		</div>
 
-
+			<!-- login modal -->
 			<div class="modal" id="popup">
 			<div class="modal-dialog modal-lg">
 			<div class="modal-content">
@@ -109,16 +112,31 @@
 	            <h3>Login to Lun-lata</h3>
 	          </div>
 	          <div class="modal-body">
-	            <form method="post" action='' name="login_form">
-	              <p><input type="text" class="span3" name="eid" id="email" placeholder="Email"></p>
-	              <p><input type="password" class="span3" name="passwd" placeholder="Password"></p>
-	              <p><button type="submit" class="btn btn-primary">Sign in</button>
+	            <form ng-submit="submitlogin()" name="login_form">
+	              <p><input type="text" class="span3" ng-model="username" id="username" placeholder="Username"></p>
+	              <p><input type="password" class="span3" ng-model="password" placeholder="Password"></p>
+	              <p><button type="submit" class="btn btn-primary">Log in</button>
 	              </p>
 	            </form>
 	          </div>
 	          <div class="modal-footer">
 	            New To Lun-Lata?
-	            <a href="#" class="btn btn-primary">Register</a>
+	            <a href="#" ng-click="register()" class="btn btn-primary">Sign up</a>
+	          </div>
+	          </div>
+	          </div>
+	        </div>
+
+	        <!-- leaderboard modal -->
+	        <div class="modal" id="leaderboard">
+			<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+	          <div class="modal-header">
+	            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	            <h3>Leaderboard</h3>
+	          </div>
+	          <div class="modal-body">
+	            <div ng-repeat="leader in leaders">{{ }}</div>
 	          </div>
 	          </div>
 	          </div>

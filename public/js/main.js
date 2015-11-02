@@ -223,10 +223,6 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 		}
 
 
-
-
-
-
 		// restart the game/ start a new game
 		$scope.restart = function(){
 			thisGame = newGameDeck()
@@ -246,7 +242,37 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 		}
 
 
+		// user login
+		$scope.submitlogin = function(){
+			console.log($scope.username, $scope.password)
+			$http({
+				method	: 'post',
+				url		: '/login',
+				data 	: {username: $scope.username, password: $scope.password},
+			})
+		}
 
+		// user sign up
+		$scope.register = function(){
+			$http({
+				method	: 'post',
+				url		: '/register',
+				data 	: {username: $scope.username, password: $scope.password},
+			})
+		}
+
+
+		// show leaderboard
+		$scope.showLeaders = function(){
+
+			$http({
+				method	: 'get',
+				url		: '/leaderboard',
+
+			}).then(function(returnData){
+				console.log(returnData.data)
+			})
+		}
 }])
 
 
