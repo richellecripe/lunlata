@@ -336,6 +336,16 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 		}
 
 
+		$scope.isLoggedIn = function(){
+			if ($scope.user){
+				return true
+			}
+			else {
+				return false
+			}
+		}
+		
+
 		$scope.getScore = function(){
 
 			$http({
@@ -355,7 +365,7 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 			
 			$scope.user.highScore = $scope.user.currentScore + $scope.points
 			console.log('is this working', $scope.user.highScore)
-			
+
 			$http({
 				method	: 'post',
 				url		: '/setscore',
@@ -369,14 +379,7 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 
 
 
-		$scope.isLoggedIn = function(){
-			if ($scope.user){
-				return true
-			}
-			else {
-				return false
-			}
-		}
+		
 
 }])
 
