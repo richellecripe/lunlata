@@ -30,7 +30,8 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#" class="loginbutton">Login</a></li>
+        <li><a href="#" class="loginbutton" ng-show="loggedOut">Login</a></li>
+        <li><a href="#" class="logoutbutton" ng-click="logout()" ng-show="!loggedOut">Logout</li>
         <li><a href="#" ng-click="showLeaders()" class="leaderboard">Leaderboard</a></li>
 
         <!-- dropdown menu 
@@ -48,10 +49,8 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-	
 
-<button type="button" ng-click="getScore()">test </button>
-
+	<div ng-show="isLoggedIn()">Hi, {{ user.username }} </div>
 	<div>
 	<div class="main">
 		<div class="header">
@@ -88,11 +87,12 @@
 		  <div class="modal-dialog modal-sm">
 		    <div class="modal-content">
 		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <button type="button" class="close" data-dismiss="modal" ng-click="addPoints()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 		        
 		      </div>
 		      <div class="modal-body" ng-model="points">
-		        <p>You did it! {{ points }} points</p>
+		        <p>This round: {{ points }} points</p>
+		        <p>Total score: {{ totalScore }} points</p>
 		      </div>
 		    
 		    	<div class="modal-footer">
@@ -128,56 +128,23 @@
 			<div class="modal-content">
 	          <div class="modal-header">
 	            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	            <h3>Leaderboard</h3>
 	          </div>
 	          <div class="modal-body">
 					<table class="table leaderboard-table">
-						<thead>
-							<tr>
-								<th>#</th>
-								<th>Alias</th>
-								<th>Score</th>
-							</tr>
-						</thead>
-					  	<tbody>
-					  		<tr class="danger">
-					  		<th scope="row">1</th>
-					  		<td>Werewolf</td>
-					  		<td>788 points</td>
-					  		</tr>
-					  		<tr>
-					  		<th scope="row">2</th>
-					  		<td>Mermaid</td>
-					  		<td>522 points</td>
-					  		</tr>
-					  		<tr>
-					  		<th scope="row">3</th>
-					  		<td>Llama</td>
-					  		<td>333 points</td>
-					  		</tr>
-					  		<tr>
-					  		<th scope="row">4</th>
-					  		<td>Fivel</td>
-					  		<td>310 points</td>
-					  		</tr>
-					  		<tr>
-					  		<th scope="row">5</th>
-					  		<td>Squirrel</td>
-					  		<td>266 points</td>
-					  		</tr>
-					  		<tr>
-					  		<th scope="row">6</th>
-					  		<td>Mr. Powell</td>
-					  		<td>212 points</td>
-					  		</tr>
-					  	</tbody>
-					</table>
-					<!-- <table>
-					  <tr ng-repeat="user in users">
-					    <td>{{ user.username }}</td>
-					    <td>{{ user.highScore }}</td>
+					<thead>
+						<tr>
+							<!-- <th>#</th> -->
+							<th>Score</th>
+							<th>Alias</th>
+						</tr>
+					</thead>
+					<tbody>
+					  <tr ng-repeat="user in leaderboardUsers">
+					  	<td>{{ user.highScore }}</td>
+					    <td class="alias">{{ user.username }}</td>
 					  </tr>
-					</table> -->
+					</tbody>
+					</table>
 	          </div>
 	          </div>
 	          </div>

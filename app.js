@@ -25,7 +25,7 @@ var app = express()
 app.use(session({
 	secret: 'keyboard cat',
 	resave: false,
-	saveUniinitialized: true
+	saveUninitialized: true
 }))
 
 app.use(passport.initialize())
@@ -41,17 +41,21 @@ app.use( express.static(__dirname + '/public') )
 
 // --- Routes --- \\
 app.get( '/', function(req, res){
+	console.log(req.user)
 	res.sendFile('/html/index.html', {root : './public'})
 })
 
 app.post( '/login', authCtrl.processLogin)
 app.post( '/register', authCtrl.processSignup)
 app.get( '/logout', authCtrl.logout)
-
-
 app.get( '/leaderboard', userCtrl.findLeaders)
+app.get( '/getscore', userCtrl.getScore)
+  
+app.get('/api/me', function(req, res){
+	console.log('hi', req.user)
+	res.send(req.user)
+})
 
-app.post( '/getscore', userCtrl.getScore)
 
 // --- Create Port & Listen for Connections --- \\
 var port = 3000

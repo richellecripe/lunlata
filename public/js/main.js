@@ -1,9 +1,28 @@
 angular.module('gameApp', [])
 
 
-angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$http', function ($scope, $timeout, $http){
-
+angular.module('gameApp')
+	.service('authService', ['$http', '$location', function($http){
 		
+		this.authCheck = function(cb){
+			$http.get('/api/me')
+				.then( function(returnData){
+					console.log(returnData)
+					cb(returnData.data)
+				})
+		}										
+	}])
+
+angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$http', 'authService', function ($scope, $timeout, $http, authService){
+			console.log('AUTH', authService)
+
+			authService.authCheck(function(user){
+				console.log('USER!', user)
+				$scope.user = user
+			})
+
+			$scope.loggedOut = true
+
 			$('#easy').on('click', function () {
 			    $(this).button('toggle') 
 			  	}) 
@@ -19,7 +38,6 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 	
 	$scope.level = 'easy'
 	
-
 	var decks = { 
 
 
@@ -48,11 +66,13 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 	
 	
 	}
+
+
 		// initialize empty array for new game deck
 		var gameDeck = []
 		var points = 0
 		var misses = 0
-
+		// var score = $scope.user.highScore
 
 
 		var makeDeck = function(){
@@ -91,7 +111,6 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 
 			return gameDeck
 		}
-
 
 
 
@@ -171,23 +190,20 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 						// call timeout function after 0.5 seconds
 						$timeout(timeout, 500)
 
-
 					}	
 
 					if (this.unmatchedPairs === 0){
 								$('#myModal').modal('show')
 								$scope.points = this.points - this.misses
-							}
+								$scope.totalScore = score + $scope.points 
+						}
 					
 				}
 
 			}
 
-			
-
-			
-
 		} // end Game
+
 
 
 		// start a new game 
@@ -199,18 +215,12 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 
 		var thisGame = newGameDeck()
 
-		var score = $scope.highScore + points
-
-
-
-
-
 
 		// deal cards
 		$scope.cards = gameDeck
 		$scope.points = points
-
-		$scope.highScore = score
+		// $scope.highScore = newScore
+		// $scope.highScore = score
 
 
 		$scope.setLevel = function(level) {
@@ -247,20 +257,45 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 			$scope.cards = gameDeck
 		}
 
+		
 
 		// user login
 		$scope.submitlogin = function(){
 			console.log($scope.username, $scope.password)
+
 			$http({
 				method	: 'post',
 				url		: '/login',
 				data 	: {username: $scope.username, password: $scope.password},
 			}).then(function(returnData){
+				console.log(returnData)
+				authService.authCheck(function(user){
+					console.log('USER!', user)
+					$scope.user = user
+				})
 			})
 
 			$scope.username = ''
 			$scope.password = ''
+			$scope.loggedOut = false
+
 		}
+
+
+		$scope.logout = function(){
+			$http({
+				method	: 'get',
+				url		: '/logout'
+			})
+
+			authService.authCheck(function(user){
+				console.log('USER!', user)
+				$scope.user = user
+			})
+
+			$scope.loggedOut = true
+		}
+
 
 		// user sign up
 		$scope.register = function(){
@@ -270,11 +305,16 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 				url		: '/register',
 				data 	: {username: $scope.username, password: $scope.password},
 			}).then(function(returnData){
-				console.log(returnData.data)
+				authService.authCheck(function(user){
+					console.log('USER!', user)
+					$scope.user = user
+			})
 			})
 
 			$scope.username = ''
 			$scope.password = ''
+
+			$scope.loggedOut = false
 		}
 
 
@@ -286,30 +326,41 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 				url		: '/leaderboard',
 
 			}).then(function(returnData){
-				$scope.username = returnData.username
-				$scope.highScore = returnData.highScore				
+				$scope.leaderboardUsers = returnData.data				
 			})
 		}
 
 
 		$scope.getScore = function(){
+
 			$http({
-				method	: 'post',
+				method	: 'get',
 				url		: '/getscore',
-				data 	: {username: $scope.username, password: $scope.password},
+
 			}).then(function(returnData){
 				console.log(returnData)
-				$scope.highScore = returnData.highScore
-				// window.location.href="/"
+				$scope.highScore = returnData.data
 			})
-			// console.log('getting score')
-			// $http.post('/getscore', {username : 'hi'})
-			// 	.then(function(score){
-			// 		console.log(score)
-			// 	}, function(err){
-
-			// 	})
 		}
+
+		// $scope.addPoints = function(){
+
+		// 	$http({
+		// 		method	: 'post',
+		// 		url		: 'addpoints',
+		// 		data 	: {highScore : $scope.user.highScore}
+		// 	})
+		// }
+
+		$scope.isLoggedIn = function(){
+			if ($scope.user){
+				return true
+			}
+			else {
+				return false
+			}
+		}
+
 }])
 
 

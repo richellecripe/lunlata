@@ -4,8 +4,8 @@
 
 .header {
 	/*background-image: url();*/
-	line-height: 68px;
-	height: 72px;
+	line-height: 50px;
+	height: 50px;
 	text-align: right;
 	vertical-align: middle;
 
@@ -95,12 +95,14 @@
 }
 
 .cards {
-	height: 140px;
+	height: 125px;
+	/*height: 120px;*/
 	/*border: 1px solid #0a0a0a;*/
 }
 
 .white {
-	height: 140px;
+	height: 125px;
+	/*height: 120px;*/
 	/*border: 1px solid #0a0a0a;*/
 }
 
@@ -172,7 +174,7 @@
 
 
 .main {
-	max-width: 70%;
+	max-width: 50%;
 	margin: auto;
 
 	/*border-left: 4px solid #eee9e9;
@@ -194,5 +196,12 @@
 	margin: 2%;
 }
 
+.navbar {
+	margin-bottom: 0%;
+}
+
+.alias {
+	text-align: left;
+}
 
 

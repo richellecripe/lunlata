@@ -8,6 +8,7 @@ var User = require('../auth/authModel/user.js');
 var performLogin = function(req, res, next, user){
 
   req.login(user, function(err){
+  	console.log(err)
     // If there was an error, allow execution to move to the next middleware
     if(err) return next(err);
 
@@ -23,14 +24,14 @@ var authenticationController = {
   processLogin: function(req, res, next){
 
     var authFunction = passport.authenticate('local', function(err, user, info){
-
+    	console.log(err, user, info)
       // If there was an error, allow execution to move to the next middleware
       if(err) return next(err);
 
       if(!user) {
 		    return res.send({error: 'Error logging in. Please try again.'});
       }
-      
+      console.log('this')
       performLogin(req, res, next, user);
     });
 
