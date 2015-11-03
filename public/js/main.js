@@ -213,12 +213,14 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 			return new Game(gameDeck)
 		}
 
+
 		var thisGame = newGameDeck()
 
 
 		// deal cards
 		$scope.cards = gameDeck
 		$scope.points = points
+
 		// $scope.highScore = newScore
 		// $scope.highScore = score
 
@@ -273,13 +275,14 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 					console.log('USER!', user)
 					$scope.user = user
 					$scope.getScore()
+
 				})
 			})
 
 			$scope.username = ''
 			$scope.password = ''
+		
 			$scope.loggedOut = false
-
 		}
 
 
@@ -295,6 +298,7 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 			})
 
 			$scope.loggedOut = true
+			$scope.user = false
 		}
 
 
@@ -341,8 +345,7 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 
 			}).then(function(returnData){
 				console.log(returnData)
-				$scope.user.highScore = returnData.data
-				console.log($scope.user.highScore)
+				$scope.user.currentScore = returnData.data.highScore
 			})
 		}
 
@@ -350,8 +353,19 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 
 			$http({
 				method	: 'post',
-				url		: 'addpoints',
-				data 	: {highScore : $scope.user.highScore}
+				url		: '/addpoints',
+				data 	: {username : $scope.user.username, highScore : $scope.user.highScore}
+			}).then(function(){
+				$scope.user.highScore = $scope.user.currentScore + $scope.points
+			})
+		}
+
+		$scope.setScore = function(score){
+			console.log(score)
+			$http({
+				method	: 'post',
+				url		: '/setscore',
+				data 	: {username : $scope.user.username, highscore : score}
 			})
 		}
 

@@ -50,6 +50,7 @@ app.post( '/register', authCtrl.processSignup)
 app.get( '/logout', authCtrl.logout)
 app.get( '/leaderboard', userCtrl.findLeaders)
 app.post( '/getscore', userCtrl.getScore)
+app.post( '/setscore', userCtrl.setScore)
   
 app.get('/api/me', function(req, res){
 	console.log('hi', req.user)

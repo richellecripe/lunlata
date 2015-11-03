@@ -50,7 +50,9 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-	<div ng-show="isLoggedIn()">Hi, {{ user.username }} </div>
+	<button ng-click="setScore(3)">score</button>
+
+	<div ng-show="isLoggedIn()" class="user-greeting"><p>Hi, <span class="user-info">{{ user.username }}</span></p><p>Your current score is <span class="user-info">{{ user.highScore }}</span></p></div>
 	<div>
 	<div class="main">
 		<div class="header">
@@ -92,7 +94,7 @@
 		      </div>
 		      <div class="modal-body" ng-model="points">
 		        <p>This round: {{ points }} points</p>
-		        <p>Total score: {{ totalScore }} points</p>
+		       <!--  <p>Total score: {{ user.highScore }} points</p> -->
 		      </div>
 		    
 		    	<div class="modal-footer">

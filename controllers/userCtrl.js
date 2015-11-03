@@ -12,19 +12,27 @@ var findLeaders = function(req, res){
 
 var getScore = function(req, res){
 	console.log(req.body)
-	User.find({}).exec(function(err, docs){
+	User.findOne({username : req.body.username}).exec(function(err, docs){
 		res.send(docs)
 	})
+}
 
+var setScore = function(req, res){
+	User.findOne({username : req.body.username}, function(err, doc){
+		// doc.highScore = req.body.highScore
+        if (err) {
+        	console.log('setScore', err)
+        }
+		doc.highScore = 100
+		doc.save()
+	})
 }
 
 module.exports = {
-	// createUser	: createUser,
 	findLeaders	: findLeaders,
 	getScore	: getScore,
+	setScore	: setScore,
 }
-
-
 
 
 
