@@ -49,7 +49,7 @@ app.post( '/login', authCtrl.processLogin)
 app.post( '/register', authCtrl.processSignup)
 app.get( '/logout', authCtrl.logout)
 app.get( '/leaderboard', userCtrl.findLeaders)
-app.get( '/getscore', userCtrl.getScore)
+app.post( '/getscore', userCtrl.getScore)
   
 app.get('/api/me', function(req, res){
 	console.log('hi', req.user)

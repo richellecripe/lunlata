@@ -72,7 +72,7 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 		var gameDeck = []
 		var points = 0
 		var misses = 0
-		// var score = $scope.user.highScore
+		// var currentScore = $scope.user.highScore
 
 
 		var makeDeck = function(){
@@ -272,6 +272,7 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 				authService.authCheck(function(user){
 					console.log('USER!', user)
 					$scope.user = user
+					$scope.getScore()
 				})
 			})
 
@@ -334,23 +335,25 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 		$scope.getScore = function(){
 
 			$http({
-				method	: 'get',
+				method	: 'post',
 				url		: '/getscore',
+				data 	: {username : $scope.user.username}
 
 			}).then(function(returnData){
 				console.log(returnData)
-				$scope.highScore = returnData.data
+				$scope.user.highScore = returnData.data
+				console.log($scope.user.highScore)
 			})
 		}
 
-		// $scope.addPoints = function(){
+		$scope.addPoints = function(){
 
-		// 	$http({
-		// 		method	: 'post',
-		// 		url		: 'addpoints',
-		// 		data 	: {highScore : $scope.user.highScore}
-		// 	})
-		// }
+			$http({
+				method	: 'post',
+				url		: 'addpoints',
+				data 	: {highScore : $scope.user.highScore}
+			})
+		}
 
 		$scope.isLoggedIn = function(){
 			if ($scope.user){
