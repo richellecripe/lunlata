@@ -50,7 +50,7 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-	<button ng-click="setScore(3)">score</button>
+	<!-- <button ng-click="setScore()">score</button> -->
 
 	<div ng-show="isLoggedIn()" class="user-greeting"><p>Hi, <span class="user-info">{{ user.username }}</span></p><p>Your current score is <span class="user-info">{{ user.highScore }}</span></p></div>
 	<div>
@@ -89,7 +89,7 @@
 		  <div class="modal-dialog modal-sm">
 		    <div class="modal-content">
 		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal" ng-click="addPoints()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 		        
 		      </div>
 		      <div class="modal-body" ng-model="points">
@@ -98,7 +98,7 @@
 		      </div>
 		    
 		    	<div class="modal-footer">
-		    		 <button type="button" class="btn okay" data-dismiss="modal"><span class="glyphicon glyphicon-ok"</span></button>
+		    		 <button type="button" class="btn okay" data-dismiss="modal"><span class="glyphicon glyphicon-ok" ng-click="setScore()"</span></button>
 		    	</div>
 		    </div><!-- /.modal-content -->
 		  </div><!-- /.modal-dialog -->

@@ -43,7 +43,7 @@
 
 .okay {
 	background-color: #fff;
-	color: #c61531;
+	color: #f15a29;
 	border: none;
 	height: auto;
 	font-size: 2.5em;
@@ -51,7 +51,7 @@
 
 .okay:hover {
 	background-color: #fff;
-	color: #c61531;
+	color: #f15a29;
 }
 
 .okay.active {
@@ -61,7 +61,7 @@
 
 .play {
 	background-color: #fff;
-	color: #c61531;
+	color: #f15a29;
 	border: none;
 	height: auto;
 	font-size: 2em;
@@ -69,16 +69,16 @@
 
 .play:hover {
 	background-color: #fff;
-	color: #c61531;
+	color: #f15a29;
 }
 
 .play:visited {
 	background-color: #fff;
-	color: #c61531;
+	color: #f15a29;
 }
 
 .play.active {
-	color: #c61531;
+	color: #f15a29;
 	border-style: none;
 	box-shadow: none;
 }
@@ -111,7 +111,7 @@
 .white:hover {
 	/*background-color: #a6a3a3;*/
 	/*background-color: #eee9e9;*/
-	border: 2px solid turquoise;
+	border: 2px solid #3696d2;
 }
 
 .row.no-gutters {
@@ -204,5 +204,5 @@
 }
 
 .user-info {
-	color: red;
+	color: #f15a29;
 }

@@ -192,10 +192,10 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 
 					}	
 
-					if (this.unmatchedPairs === 0){
+					if (this.unmatchedPairs === 11){
 								$('#myModal').modal('show')
 								$scope.points = this.points - this.misses
-								$scope.totalScore = score + $scope.points 
+								
 						}
 					
 				}
@@ -349,25 +349,25 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 			})
 		}
 
-		$scope.addPoints = function(){
 
-			$http({
-				method	: 'post',
-				url		: '/addpoints',
-				data 	: {username : $scope.user.username, highScore : $scope.user.highScore}
-			}).then(function(){
-				$scope.user.highScore = $scope.user.currentScore + $scope.points
-			})
-		}
 
-		$scope.setScore = function(score){
-			console.log(score)
+		$scope.setScore = function(){
+			
+			$scope.user.highScore = $scope.user.currentScore + $scope.points
+			console.log('is this working', $scope.user.highScore)
+			
 			$http({
 				method	: 'post',
 				url		: '/setscore',
-				data 	: {username : $scope.user.username, highscore : score}
+				data 	: {username : $scope.user.username, highScore : $scope.user.highScore}
+			}).then(function(result){
+				// $scope.user.highScore = $scope.user.currentScore + $scope.points
+
+				console.log('set score', result, $scope.user.highScore)
 			})
 		}
+
+
 
 		$scope.isLoggedIn = function(){
 			if ($scope.user){

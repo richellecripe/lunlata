@@ -23,8 +23,11 @@ var setScore = function(req, res){
         if (err) {
         	console.log('setScore', err)
         }
-		doc.highScore = 100
+		doc.highScore = req.body.highScore
 		doc.save()
+		console.log('highscore', req.body.highScore)
+		res.send({score : doc.highScore})
+
 	})
 }
 
