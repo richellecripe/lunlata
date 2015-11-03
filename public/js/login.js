@@ -12,6 +12,12 @@
         $('.close').click(function() {
             $('#popup').fadeOut();
         });
+        $('#login').click(function() {
+            $('#popup').fadeOut();
+        });
+        $('#register').click(function() {
+            $('#popup').fadeOut();
+        });
     });
 
 

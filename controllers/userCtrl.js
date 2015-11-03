@@ -3,21 +3,21 @@ var User = require('../auth/authModel/user.js')
 
 
 // create a new player
-var createUser= function(req, res){
+// var createUser= function(req, res){
 
-	var newUser = new User({
+// 	var newUser = new User({
 
-		username		: req.body.username,
-		password		: req.body.password,
-		highScore		: req.body.highScore,
+// 		username		: req.body.username,
+// 		password		: req.body.password,
+// 		highScore		: req.body.highScore,
 
-	})
+// 	})
 
-	newUser.save( function(err, doc){
-		res.send(doc)
-	})
+// 	newUser.save( function(err, doc){
+// 		res.send(doc)
+// 	})
 
-}
+// }
 
 
 var findLeaders = function(req, res){
@@ -28,9 +28,18 @@ var findLeaders = function(req, res){
 }
 
 
+var getScore = function(req, res){
+	console.log(req.body)
+	res.send({username : User.username, highScore : User.highScore})
+	// User.find({username})
+	// req.body(highScore)
+	// User.find({})
+}
+
 module.exports = {
-	createUser	: createUser,
+	// createUser	: createUser,
 	findLeaders	: findLeaders,
+	getScore	: getScore,
 }
 
 

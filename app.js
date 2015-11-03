@@ -10,6 +10,7 @@ var passport = require('passport')
 var passportConfig = require('./passport.js')
 var User = require('./auth/authModel/user.js')
 var userCtrl = require('./controllers/userCtrl.js')
+var authCtrl = require('./controllers/authCtrl.js')
 // var routes = require('./routes/routes.js')
 
 
@@ -27,37 +28,30 @@ app.use(session({
 	saveUniinitialized: true
 }))
 
-
 app.use(passport.initialize())
 app.use(passport.session())
-
-
-
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
+
 
 // --- Serve Static Files --- \\
 app.use( express.static(__dirname + '/public') )
 
-// --- Routes --- \\
 
+
+// --- Routes --- \\
 app.get( '/', function(req, res){
 	res.sendFile('/html/index.html', {root : './public'})
 })
 
-app.get( '/test', passportConfig.ensureAuthAjax, function(req, res){
-	res.send({ success: 'success!'})
-})
+app.post( '/login', authCtrl.processLogin)
+app.post( '/register', authCtrl.processSignup)
+app.get( '/logout', authCtrl.logout)
 
-app.post( '/login', function(req, res){
-	console.log(req.body)
-})
-
-app.post( '/register', function(req,res){
-	console.log(req.body)
-})
 
 app.get( '/leaderboard', userCtrl.findLeaders)
+
+app.post( '/getscore', userCtrl.getScore)
 
 // --- Create Port & Listen for Connections --- \\
 var port = 3000

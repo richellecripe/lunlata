@@ -50,7 +50,7 @@
 </nav>
 	
 
-
+<button type="button" ng-click="getScore()">test </button>
 
 	<div>
 	<div class="main">
@@ -81,7 +81,7 @@
 			</div>
 	</div>
 
-	<button ng-click="test()">Test</button>
+
 
 	<!-- 	</div> -->
 		<div class="modal fade win" id="myModal">
@@ -109,19 +109,14 @@
 			<div class="modal-content">
 	          <div class="modal-header">
 	            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	            <h3>Login to Lun-lata</h3>
+	            <h3>Sign in to lun-lata</h3>
 	          </div>
 	          <div class="modal-body">
 	            <form ng-submit="submitlogin()" name="login_form">
-	              <p><input type="text" class="span3" ng-model="username" id="username" placeholder="Username"></p>
-	              <p><input type="password" class="span3" ng-model="password" placeholder="Password"></p>
-	              <p><button type="submit" class="btn btn-primary">Log in</button>
-	              </p>
+	              <p><input type="text" class="span3" ng-model="username" id="username" placeholder="Username" required></p>
+	              <p><input type="password" class="span3" ng-model="password" placeholder="Password" required></p>
+	              <p><button type="submit" class="btn btn-default login" id="login">Log in</button><a href="#" ng-click="register()" class="btn btn-primary register" id="register">Sign up</a></p>
 	            </form>
-	          </div>
-	          <div class="modal-footer">
-	            New To Lun-Lata?
-	            <a href="#" ng-click="register()" class="btn btn-primary">Sign up</a>
 	          </div>
 	          </div>
 	          </div>
@@ -136,7 +131,53 @@
 	            <h3>Leaderboard</h3>
 	          </div>
 	          <div class="modal-body">
-	            <div ng-repeat="leader in leaders">{{ }}</div>
+					<table class="table leaderboard-table">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Alias</th>
+								<th>Score</th>
+							</tr>
+						</thead>
+					  	<tbody>
+					  		<tr class="danger">
+					  		<th scope="row">1</th>
+					  		<td>Werewolf</td>
+					  		<td>788 points</td>
+					  		</tr>
+					  		<tr>
+					  		<th scope="row">2</th>
+					  		<td>Mermaid</td>
+					  		<td>522 points</td>
+					  		</tr>
+					  		<tr>
+					  		<th scope="row">3</th>
+					  		<td>Llama</td>
+					  		<td>333 points</td>
+					  		</tr>
+					  		<tr>
+					  		<th scope="row">4</th>
+					  		<td>Fivel</td>
+					  		<td>310 points</td>
+					  		</tr>
+					  		<tr>
+					  		<th scope="row">5</th>
+					  		<td>Squirrel</td>
+					  		<td>266 points</td>
+					  		</tr>
+					  		<tr>
+					  		<th scope="row">6</th>
+					  		<td>Mr. Powell</td>
+					  		<td>212 points</td>
+					  		</tr>
+					  	</tbody>
+					</table>
+					<!-- <table>
+					  <tr ng-repeat="user in users">
+					    <td>{{ user.username }}</td>
+					    <td>{{ user.highScore }}</td>
+					  </tr>
+					</table> -->
 	          </div>
 	          </div>
 	          </div>
