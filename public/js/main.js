@@ -21,7 +21,7 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 				$scope.user = user
 			})
 
-			$scope.loggedOut = true
+			$scope.isLoggedIn = false
 
 
 
@@ -256,7 +256,7 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 			$scope.cards = gameDeck
 		}
 
-		$scope.loggedOut = true
+		
 		
 
 		// user login
@@ -280,7 +280,7 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 			$scope.username = ''
 			$scope.password = ''
 		
-			$scope.loggedOut = false
+			$scope.isLoggedIn = true
 		}
 
 
@@ -309,7 +309,7 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 			$scope.username = ''
 			$scope.password = ''
 
-			$scope.loggedOut = false
+			$scope.isLoggedIn = true
 			
 		}
 
@@ -380,8 +380,7 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 			// 	console.log('USER!', user)
 			// 	$scope.user = user
 			// })
-
-			$scope.loggedOut = true
+			$scope.isLoggedIn = false
 			$scope.user = false
 
 			$scope.restart()
