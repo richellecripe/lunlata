@@ -2,6 +2,11 @@
 	font-family: 'Lato', sans-serif;
 }
 
+@font-face {
+	font-family: 'Bemio Italic';
+	src: url('../html/bemio/BemioItalic.otf');
+}
+
 .header {
 	/*background-image: url();*/
 	line-height: 54px;
@@ -138,6 +143,11 @@
 
 .modal-header {
 	border: none;
+	text-align: center;
+}
+
+.modal-logo {
+	margin: auto;
 }
 
 .modal-body {
@@ -145,6 +155,11 @@
 	padding-top: 18%;
 	text-align: center;
 }
+
+.modal-body.leaders {
+	padding-top: 1%;
+}
+
 
 .modal-footer {
 	border: none;
@@ -177,11 +192,23 @@
 	border: 2px solid black;
 }
 
-.leaderboard-table {
-	max-width: 80%;
-	margin: auto;
+.leaderboard-header {
+	font-family: 'Bemio Italic';
+	color: #3696d2;
+	margin-bottom: 0;
+	text-align: center;
 }
 
+.leaderboard-table th {
+	max-width: 90%;
+	margin: auto;
+	font-family: 'Bemio Italic';
+	color: #f15a29;
+}
+
+.score {
+	text-align: center;
+}
 
 .login {
 	margin: 2%;
@@ -202,13 +229,22 @@
 
 .navbar img {
 	max-width: 100%;
-	width: 60%;
+	width: 64%;
 	height: auto;
+	padding-left: 10%;
 }
 
 .navbar-default {
 	background-color: #fff;
 	border: none;
+}
+
+.navbar-default .navbar-nav > li > a {
+	color: #3696d2;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+	color: #277aae;
 }
 
 .alias {
@@ -217,10 +253,19 @@
 
 .user-greeting {
 	text-align: center;
+	font-size: 1.5rem;
 }
 
 .user-info {
 	color: #f15a29;
 }
 
+.register:hover {
+	background-color: #f15a29;
+	border-color: #f15a29;
+	color: #fff;
+}
 
+.bemio {
+	font-family: 'Bemio Italic';
+}
