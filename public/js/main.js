@@ -286,20 +286,7 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 		}
 
 
-		$scope.logout = function(){
-			$http({
-				method	: 'get',
-				url		: '/logout'
-			})
-
-			authService.authCheck(function(user){
-				console.log('USER!', user)
-				$scope.user = user
-			})
-
-			$scope.loggedOut = true
-			$scope.user = false
-		}
+		
 
 
 		// user sign up
@@ -344,7 +331,7 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 				return false
 			}
 		}
-		
+
 
 		$scope.getScore = function(){
 
@@ -378,7 +365,20 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 		}
 
 
+		$scope.logout = function(){
+			$http({
+				method	: 'get',
+				url		: '/logout'
+			})
 
+			// authService.authCheck(function(user){
+			// 	console.log('USER!', user)
+			// 	$scope.user = user
+			// })
+
+			$scope.loggedOut = true
+			$scope.user = false
+		}
 		
 
 }])
