@@ -31,8 +31,8 @@
       
       <ul class="nav navbar-nav navbar-right">
       <li><a href="#" ng-click="showLeaders()" class="leaderboard">Leaderboard</a></li>
-        <li><a href="#" class="loginbutton" ng-show="loggedOut">Login</a></li>
-        <li><a href="#" class="logoutbutton" ng-click="logout()" ng-show="!loggedOut">Logout</a></li>
+        <li><a href="#" class="loginbutton" ng-show="!isLoggedIn()">Login</a></li>
+        <li><a href="#" class="logoutbutton" ng-click="logout()" ng-show="isLoggedIn()">Logout</a></li>
         
 
         <!-- dropdown menu 

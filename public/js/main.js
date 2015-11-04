@@ -21,7 +21,7 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 				$scope.user = user
 			})
 
-			$scope.isLoggedIn = false
+			// $scope.isLoggedIn = false
 
 
 
@@ -279,8 +279,7 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 
 			$scope.username = ''
 			$scope.password = ''
-		
-			$scope.isLoggedIn = true
+
 		}
 
 
@@ -309,7 +308,7 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 			$scope.username = ''
 			$scope.password = ''
 
-			$scope.isLoggedIn = true
+			// $scope.isLoggedIn = true
 			
 		}
 
@@ -328,7 +327,9 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 
 
 		$scope.isLoggedIn = function(){
+			console.log('is logged in', $scope.user)
 			if ($scope.user){
+
 				return true
 			}
 			else {
@@ -380,7 +381,7 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 			// 	console.log('USER!', user)
 			// 	$scope.user = user
 			// })
-			$scope.isLoggedIn = false
+			// $scope.isLoggedIn = false
 			$scope.user = false
 
 			$scope.restart()
