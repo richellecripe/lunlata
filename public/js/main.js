@@ -23,6 +23,8 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 
 			$scope.loggedOut = true
 
+
+
 			$('#easy').on('click', function () {
 			    $(this).button('toggle') 
 			  	}) 
@@ -40,11 +42,7 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 	
 	var decks = { 
 
-
-
-		//deep pink, blue violet, indigo,    red,    dark orange, yellow, saddleBrown,  mediumSeaGreen, darkGreen, aqua
 	easy : ['#FF1493', '#8A2BE2', '#4B0082', '#FF0000', '#FF8C00', '#FFFF00', '#8B4513',  '#3CB371', '#006400', '#00FFFF',
-	// teal,   dodgerBlue,  hotPink,  violet, mediumSlateBlue, crimson, paleTurquoise, darkSlateGray
 	'#008080', '#1E90FF',  '#FF69B4', '#EE82EE', '#7B68EE', '#DC143C', '#AFEEEE', '#2F4F4F'],
 	
 	medium : ['#00FFFF', '#7FFFD4', '#000000', '#0000FF', '#8A2BE2', '#A52A2A', '#DEB887', '#5F9EA0',
@@ -63,7 +61,6 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 	'#CD5C5C', '#CD853F', '#D2691E', '#D8BFD8', '#DA70D6', '#DB7093', '#DC143C', '#DEB887', '#EEE8AA',
 	'#F08080', '#F4A460', '#FF0000', '#FF1493', '#FF4500', '#FF69B4', '#FF7F50', '#FF8C00', '#FFB6C1',
 	'#FFD700', '#FFFF00']
-	
 	
 	}
 
@@ -192,7 +189,7 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 
 					}	
 
-					if (this.unmatchedPairs === 11){
+					if (this.unmatchedPairs === 0){
 								$('#myModal').modal('show')
 								$scope.points = this.points - this.misses
 								
@@ -311,7 +308,7 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 
 			$scope.username = ''
 			$scope.password = ''
-			
+
 			$scope.loggedOut = false
 			
 		}
