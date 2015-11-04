@@ -2,6 +2,11 @@
 	font-family: 'Lato', sans-serif;
 }
 
+body {
+	max-width: 80%;
+	margin: auto;
+}
+
 @font-face {
 	font-family: 'Bemio Italic';
 	src: url('../html/bemio/BemioItalic.otf');
@@ -132,7 +137,7 @@
 
 
 .modal-dialog {
-	width: 40%;
+	width: 30%;
 	margin: auto;
 	margin-top: 10%;
 }
@@ -190,6 +195,7 @@
 	max-width: 50%;
 	margin: auto;
 	border: 2px solid #102d3f;
+	margin-top: 2%;
 }
 
 .leaderboard-header {
@@ -219,7 +225,7 @@
 }
 
 .nav {
-	margin-bottom: 8%;
+	margin-bottom: 5%;
 }
 
 .navbar {
@@ -253,7 +259,7 @@
 
 .user-greeting {
 	text-align: center;
-	font-size: 1.5rem;
+	font-size: 2rem;
 }
 
 .user-info {
