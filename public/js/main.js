@@ -297,19 +297,23 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 				method	: 'post',
 				url		: '/register',
 				data 	: {username: $scope.username, password: $scope.password},
+
 			}).then(function(returnData){
+				
 				authService.authCheck(function(user){
 					console.log('USER!', user)
 					$scope.user = user
+					console.log('user', $scope.user)
+					$scope.getScore()
 					
-			})
+				})
 			})
 
 			$scope.username = ''
 			$scope.password = ''
-
+			
 			$scope.loggedOut = false
-			$scope.getScore()
+			
 		}
 
 
@@ -355,16 +359,17 @@ angular.module('gameApp').controller('gameController', ['$scope', '$timeout', '$
 			
 			$scope.user.highScore = $scope.user.currentScore + $scope.points
 			console.log('is this working', $scope.user.highScore)
-
+			console.log('we want to see', $scope.user.highScore)
 			$http({
 				method	: 'post',
 				url		: '/setscore',
 				data 	: {username : $scope.user.username, highScore : $scope.user.highScore}
 			}).then(function(result){
 				// $scope.user.highScore = $scope.user.currentScore + $scope.points
-
+				// $scope.user.highScore = result
 				console.log('set score', result, $scope.user.highScore)
 			})
+			$scope.restart()
 		}
 
 
