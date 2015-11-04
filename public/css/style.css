@@ -191,8 +191,24 @@
 	margin: 2%;
 }
 
+.nav {
+	margin-bottom: 8%;
+}
+
 .navbar {
 	margin-bottom: 0%;
+	padding-top: 1%;
+}
+
+.navbar img {
+	max-width: 100%;
+	width: 60%;
+	height: auto;
+}
+
+.navbar-default {
+	background-color: #fff;
+	border: none;
 }
 
 .alias {
@@ -206,3 +222,5 @@
 .user-info {
 	color: #f15a29;
 }
+
+

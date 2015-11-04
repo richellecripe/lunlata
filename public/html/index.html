@@ -23,16 +23,17 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Lun-Lata</a>
+      <a class="navbar-brand" href="#"><img class="img-responsive" src="../images/lun-lata-logo-300.png"></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       
       <ul class="nav navbar-nav navbar-right">
+      <li><a href="#" ng-click="showLeaders()" class="leaderboard">Leaderboard</a></li>
         <li><a href="#" class="loginbutton" ng-show="loggedOut">Login</a></li>
-        <li><a href="#" class="logoutbutton" ng-click="logout()" ng-show="!loggedOut">Logout</li>
-        <li><a href="#" ng-click="showLeaders()" class="leaderboard">Leaderboard</a></li>
+        <li><a href="#" class="logoutbutton" ng-click="logout()" ng-show="!loggedOut">Logout</a></li>
+        
 
         <!-- dropdown menu 
         <li class="dropdown">
@@ -51,9 +52,10 @@
 </nav>
 
 	<!-- <button ng-click="setScore()">score</button> -->
-
-	<div ng-show="isLoggedIn()" class="user-greeting"><p>Hi, <span class="user-info">{{ user.username }}</span></p><p>Your current score is <span class="user-info">{{ user.highScore }}</span></p></div>
-	<div>
+	<div class="user-div">
+		<div ng-show="isLoggedIn()" class="user-greeting"><p>Hi, <span class="user-info">{{ user.username }}</span></p><p>Your current score is <span class="user-info">{{ user.highScore }}</span></p></div>
+		<div>
+	</div>
 	<div class="main">
 		<div class="header">
 			<div class="col-xs-12">
@@ -81,7 +83,6 @@
 				
 			</div>
 	</div>
-
 
 
 	<!-- 	</div> -->
